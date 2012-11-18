@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% block extrahead %}
+    <script type="text/javascript" src="/static/js/json2.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/static/foundation-2.2/javascripts/foundation.js"></script>
+    <link href="/static/foundation-2.2/stylesheets/reveal.css" rel="stylesheet">
+    <script type="text/javascript">
+var engage_url = "/engage/{{ you }}/{{ it }}";
+var bump_url = "http://dendritenetwork.com/bump/{{ you }}/{{ it }}/";
+var iframe_url = "{{ iframe_url }}"
+var own_tag = "{{ you }}";
+var own_url = "{{ your_url }}";
+    </script>
+    <script type="text/javascript" src="/static/js/controls.js"></script>
+    <script type="text/javascript">
+$(function() {
+  setup_button("button#Engage", 'ui-icon-arrow-4-diag', engage_action);
+  setup_button("button#Forward", 'ui-icon-check', forward_action);
+  setup_button("button#Reject", 'ui-icon-close', reject_action);
+  setup_button("button#hurm", 'ui-icon-help', (function(){$('#explain_dialog').reveal();}));
+  setup_button("button#forward_no", 'ui-icon-close', close_forward_dialog);
+  setup_button("button#reject_ok", 'ui-icon-check', close_reject_dialog);
+  setup_button("button#reject_no", 'ui-icon-close', close_reject_dialog);
+  setup_button("button#explain_no", 'ui-icon-close', close_explain_dialog);
+  setup_button("button#add_new_contact", 'ui-icon-plus', add_new_contact);
+  note_own_tag(own_tag);
+  size_iframe();
+  display_contacts();
+  $(window).resize(size_iframe);
+  $(".taggy_like").find("a").click(function() { return false; });
+  $('#accordion').accordion();
+});
+    </script>
+{% endblock %}
+{% block header %}
+  <div id="dn_logo">
+    <button id="Engage">Engage</button>
+    <button id="Forward">Forward</button>
+    <button id="Reject">Reject</button>
+    &nbsp;&nbsp;&nbsp;
+    <a href="{{ from_url }}" title="{{ from_url }}">visit sender</a>
+    &nbsp;&nbsp;&nbsp;
+    <div style="float:right">
+    <button id="hurm">Explain</button>
+    </div>
+    <br/>&nbsp;
+  </div>
+{% endblock %}
+{% block content %}{% endblock %}
+{% block modals %}
+<iframe src="{{ iframe_url }}" ></iframe>
+
+<div id="forward_dialog" class="reveal-modal">
+  <h1>Forward...</h1>
+  
+<div id="accordion">
+  <h3><a href="#">Send this link to anyone <span style="font-size:smaller">(right-click and select "copy link location")</span></a></h3>
+  <div>
+  <div class="taggy_like">
+    <a href="http://dendritenetwork.com/bump/{{ you }}/{{ it }}/">
+    http://dendritenetwork.com/bump/{{ you }}/{{ it }}/
+    </a>
+  </div>
+  </div>
+
+  <h3><a href="#">Pick a contact</a></h3>
+  <div>
+    <div id="contacts"></div>
+    <div id="updatable_url" class="taggy_like">
+      <span></span>
+      <a href="#"><br>Click on a contact to generate bump URL<br><br></a>
+    </div>
+  </div>
+
+
+  <h3><a href="#">Add a new contact by tag</a></h3>
+  <div>
+  <div class="rejform">
+    <form class="nice">
+      <input
+        type="text"
+        id="id_new_contact_label"
+        name="new_contact_label"
+        maxlength="24"
+        size="10"
+        placeholder="label"
+        >
+      <input
+        type="text"
+        id="id_new_contact_tag"
+        name="new_contact_tag"
+        maxlength="32"
+        size="32"
+        placeholder="tag"
+        >
+        <button id="add_new_contact">Add</button>
+    </form>
+  </div>
+  </div>
+</div>
+
+  <div><button id="forward_no">Close</button></div>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div id="reject_dialog" class="reveal-modal">
+  <h1>Reject...</h1>
+  <div>
+    This is where you have a place to enter the reason you're rejecting this site.
+    You can send it to either the site owner, the person who sent you to this site, or both.
+  </div>
+  <div class="rejform">
+    <form class="nice">
+      <textarea name="reject_reason" cols="40" rows="4" id="id_reject_reason" placeholder="Enter your reason here if you want to..."></textarea>
+      <input type="checkbox" id="id_a" name="a"><label for="id_a">The contact who sent this to you.</label>
+      <br/>
+      <input type="checkbox" id="id_b" name="b"><label for="id_b">The site owner</label>
+    </form>
+  </div>
+  <div>
+    <button id="reject_ok">Send Rejection</button>
+    <button id="reject_no">Cancel</button>
+    <span style="font-size:smaller">(Currently the "Send" button does nothing.)</span>
+  </div>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div id="explain_dialog" class="reveal-modal">
+  <h1 style="font-size:48px">Dendrite Network</h1>
+  <div>
+    <p>You're looking at a page being displayed via the <a href="http://dendritenetwork.com/">Dendrite Network</a>,
+    an experimental information propagation system.</p>
+
+    <p>The person who sent you the URL that brought you here should have explained a little about how it works.
+    There is more information available at the <a href="http://dendritenetwork.com/">main Dendrite Network site</a> and at the
+    <a href="http://firequery.blogspot.com/">blog "Burning Questions"</a>.</p>
+
+    <p>You can also ask questions at the
+    <a href="http://groups.google.com/group/dendrite-network">Dendrite Network Google Group</a></p>
+    
+  </div>
+  <div>
+    <button id="explain_no">Close</button>
+  </div>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+{% endblock %}
+</body>
+</html>

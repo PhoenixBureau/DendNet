@@ -1,7 +1,11 @@
+import logging
 from json import dumps
 from flask import Flask, request, jsonify, render_template
 from tags import tag_for
 from openkeyvalue_store import retrieve, store
+
+
+log = logging.getLogger('mon')
 
 
 app = Flask(__name__)
@@ -14,7 +18,8 @@ def hello_world():
 
 @app.route("/register")
 def reg():
-    return render_template('register.html',
+    return render_template(
+        'register.html',
         register_ajax='regy',
         register='regy',
         )
@@ -25,8 +30,24 @@ def reg_ajax():
     url = request.form['urly']
     tag = tag_for(url)
     if store(**{tag: url}):
+        log.info('register %s %r', tag, url)
         return jsonify(tag=tag)
     return 'error storing %r' % ({tag: url},)
+
+
+@app.route("/bump/<me>/<it>/<you>")
+def bump(me, it, you):
+    data = dict(
+        from_url=retrieve(me),
+        iframe_url=retrieve(it),
+        your_url=retrieve(you),
+        me=me,
+        it=it,
+        you=you,
+        )
+    log.info('bump %s %s %s', me, it, you)
+    return render_template( 'bump.html', **data)
+
 
 
 if __name__ == '__main__':
