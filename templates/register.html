@@ -19,7 +19,6 @@ $(function() {
 <div class="row"><div class="twelve columns" ><div id="slider" class="panel">
     <h2>Register an{% if tag %}other{% endif %} URL</h2>
     <form class="nice" method="POST" action="{{ register }}">
-        {% csrf_token %}
         <center>
         <input id="urly" type="text" name="urly" maxlength="100" size="100" placeholder="http://" />
         </center>
