@@ -11,7 +11,10 @@ def hello_world():
 
 @app.route("/register")
 def reg():
-    return render_template('register.html')
+    return render_template('register.html',
+        register_ajax='regy',
+        register='regy',
+        )
 
 
 if __name__ == '__main__':
