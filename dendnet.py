@@ -1,6 +1,7 @@
 from json import dumps
 from flask import Flask, request, jsonify, render_template
 from tags import tag_for
+from openkeyvalue_store import retrieve, store
 
 
 app = Flask(__name__)
@@ -23,7 +24,9 @@ def reg():
 def reg_ajax():
     url = request.form['urly']
     tag = tag_for(url)
-    return jsonify(tag=tag)
+    if store(**{tag: url}):
+        return jsonify(tag=tag)
+    return 'error storing %r' % ({tag: url},)
 
 
 if __name__ == '__main__':
