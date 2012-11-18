@@ -20,7 +20,7 @@ def reg():
 
 
 @app.route("/regy", methods=['POST'])
-def reg_ajax(request):
+def reg_ajax():
     url = request.form['urly']
     tag = tag_for(url)
     return jsonify(tag=tag)
