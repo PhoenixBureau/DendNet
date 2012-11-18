@@ -51,6 +51,13 @@ def bump(me, it, you):
 
 
 if __name__ == '__main__':
+    import sys
+    logging.basicConfig(
+        level=logging.DEBUG,
+        stream=sys.stderr,
+        format='%(asctime)s %(levelname)s: %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S',
+        )
     app.debug = True
     app.run(host='0.0.0.0')
 
