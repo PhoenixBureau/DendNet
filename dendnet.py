@@ -6,6 +6,13 @@ from openkeyvalue_store import retrieve, store
 
 
 log = logging.getLogger('mon')
+log.setLevel(logging.DEBUG)
+sh = logging.StreamHandler()
+sh.setLevel(logging.DEBUG)
+sh.setFormatter(logging.Formatter(
+    '%(asctime)s %(name)s %(levelname)s %(message)s'
+    ))
+log.addHandler(sh)
 
 
 app = Flask(__name__)
@@ -51,13 +58,13 @@ def bump(me, it, you):
 
 
 if __name__ == '__main__':
-    import sys
-    logging.basicConfig(
-        level=logging.DEBUG,
-        stream=sys.stderr,
-        format='%(asctime)s %(levelname)s: %(message)s',
-        datefmt='%Y-%m-%d %H:%M:%S',
-        )
+##    import sys
+##    logging.basicConfig(
+##        level=logging.DEBUG,
+##        stream=sys.stderr,
+##        format='%(asctime)s %(levelname)s: %(message)s',
+##        datefmt='%Y-%m-%d %H:%M:%S',
+##        )
     app.debug = True
     app.run(host='0.0.0.0')
 
