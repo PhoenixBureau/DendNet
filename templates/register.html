@@ -6,7 +6,8 @@ $(function() {
   $("input:submit").button().click(make_register_callback(
     "{{ register_ajax }}",
     "#urly", 
-    function (tag) { 
+    function (data) {
+      tag = data.tag;
       $("div.taggy").text(tag);
       $("div#urly_display").text(urly);
       $("#urly").val("");
