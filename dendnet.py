@@ -19,9 +19,8 @@ def reg():
         )
 
 
-@app.route("/regy")
+@app.route("/regy", methods=['POST'])
 def reg_ajax(request):
-    assert request.method == 'POST'
     url = request.form['urly']
     tag = tag_for(url)
     return jsonify(tag=tag)
