@@ -1,5 +1,5 @@
 from json import dumps
-from flask import Flask, jsonify, render_template
+from flask import Flask, request, jsonify, render_template
 from tags import tag_for
 
 
