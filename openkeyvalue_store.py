@@ -18,5 +18,7 @@ def retrieve(key):
     return value
   r = requests.get(OKV + key)
   if r.status_code == 200:
-    return r.text
+    value = r.text
+    CACHE[key] = value
+    return value
   return ''
