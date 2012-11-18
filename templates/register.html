@@ -1,0 +1,36 @@
+{% block extrahead %}
+<script type="text/javascript" src="/static/js/controls.js"></script>
+<script type="text/javascript">
+$(function() {
+  $("input:submit").button().click(make_register_callback(
+    "{% url register_ajax %}",
+    "#urly", 
+    function (tag) { 
+      $("div.taggy").text(tag);
+      $("div#urly_display").text(urly);
+      $("#urly").val("");
+      $("div#tag_display").fadeIn();
+    })
+  );
+});
+</script>
+{% endblock %}
+{% block content %}
+<div class="row"><div class="twelve columns" ><div id="slider" class="panel">
+    <h2>Register an{% if tag %}other{% endif %} URL</h2>
+    <form class="nice" method="POST" action="{% url register %}">
+        {% csrf_token %}
+        <center>
+        <input id="urly" type="text" name="urly" maxlength="100" size="100" placeholder="http://" />
+        </center>
+        <br/>
+        <input type="submit" value="Give me a tag for this URL"/>
+    </form>
+</div></div></div>
+
+<div class="row"><div class="twelve columns" ><div id="tag_display" class="panel">
+    <h2>The Tag for your URL</h2>
+    <div id="urly_display"></div>
+    <div class="taggy">{{ tag }}</div>
+</div></div></div>
+{% endblock %}
