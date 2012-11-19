@@ -16,11 +16,31 @@
 {% block content %}
 
 {% call tile("How It Works", "how") %}
-<p>The Dendrite Network works by...
+<p>The Dendrite Network works by logging the voluntary spread of memes
+(ideas) and making the log public.  You can watch the growth of the
+network through visualizations like the one below.
+<p>You have a small circle of contacts that you exchange "bump URLs"
+with.  When you visit one of these URLs you have the choice of three
+actions:
+<ul>
+<li><span class="heavy">Forward</span>
+<li><span class="heavy">Engage</span>
+<li><span class="heavy">Reject</span>
+</ul>
+<p>Each action is recorded in the public log.
 {% endcall %}
 
 {% call tile("Network Spread", "demograph") %}
-    <div class="hull"></div>
+<p>Click in the graphic below to see a dynamic demonstration of network
+growth in action.
+
+<div class="hull"></div>
+
+<p>When you visit a bump URL a link is created on the
+graph from your dot to the sender's dot.  When you send bump URLs to
+your contacts and they visit them, links are created from those
+contacts to you.
+<p>
 {% endcall %}
 
 {% call tile("Your URL", "ownurl") %}
