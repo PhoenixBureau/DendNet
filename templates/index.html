@@ -69,6 +69,23 @@ normally won't exchange information with unknown users.)
 </form>
 {% endcall %}
 
+{% call tile("Your Contacts", "urcontacts") %}
+<p>These are the people in your contacts cookie.
+<div class="contacts"></div>
+<form class="nice" method="POST" action="">
+  <center>
+  <input id="urly" type="text" name="new_contact_label" maxlength="100" placeholder="Name or Label" />
+  <br/>
+  <input id="urly" type="text" name="new_contact_url" maxlength="100" placeholder="http://" />
+  <div class="taggy">tag</div>
+  </center>
+  <br/>
+  Click here to update a contact or add a new one. The tag for the URL will be retrieved from the Dendrite Network automatically.
+  <input type="submit" value="Add or Modify"/>
+</form>
+
+{% endcall %}
+
 {% call tile("More...", "enfriendly") %}
 <div class="row">
 <div class="seven columns" >
