@@ -1,0 +1,23 @@
+
+.hull {
+    border: solid 1px black;
+}
+
+rect {
+  fill: #fff;
+}
+
+.node {
+}
+
+.cursor {
+  fill: none;
+  stroke: brown;
+  pointer-events: none;
+}
+
+.link {
+  stroke: #222;
+}
+
+
