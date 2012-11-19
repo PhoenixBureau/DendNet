@@ -12,18 +12,43 @@
 <script type="text/javascript" src="/static/js/d3.layout.min.js"></script>
 <script type="text/javascript" src="/static/js/graphdemo.js"></script>
 <link href="/static/css/graphdemo.css" rel="stylesheet">
+<script type="text/javascript">
+$(function() {
+
+  var own_tag_from_cookie = get_own_tag();
+  if (own_tag_from_cookie != "") {
+    $("div#own_tag_display").text(own_tag_from_cookie);
+  }
+
+  $('#ururl').find("input:submit").button().click(function() {
+    var urly = $('#own_url_id').val();
+    if (urly != "") {
+      $.post("{{ register_ajax }}",
+        {'urly': urly},
+        function tag_callback(data) {
+          tag = data.tag;
+          note_own_tag(tag);
+          $("div#own_tag_display").text(tag);
+        });
+    }
+    return false;
+  });
+
+});
+</script>
 {% endblock %}
 {% block content %}
 
 
-{% call tile("Pick Ur URL", "ururl") %}
+{% call tile("Pick Your URL", "ururl") %}
 <form class="nice" method="POST" action="{{ register }}">
   <center>
-  <input type="text"maxlength="100" size="80" placeholder="http://" />
+  <input id="own_url_id" name="own_url" type="text" maxlength="100" placeholder="http://" />
   </center>
   <br/>
-  <input type="submit" value="Use this URL as me."/>
+  <input type="submit" value="Use this URL for me."/>
 </form>
+  <div id="own_tag_display" class="taggy">no tag here yet... choose an URL above</div>
 {% endcall %}
 
 
