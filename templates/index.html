@@ -15,6 +15,39 @@
 {% endblock %}
 {% block content %}
 
+
+{% call tile("Pick Ur URL", "ururl") %}
+<form class="nice" method="POST" action="{{ register }}">
+  <center>
+  <input type="text"maxlength="100" size="80" placeholder="http://" />
+  </center>
+  <br/>
+  <input type="submit" value="Use this URL as me."/>
+</form>
+{% endcall %}
+
+
+{% call tile("Tag and Propagate", "tagurl") %}
+<form class="nice" method="POST" action="{{ register }}">
+  <center>
+  <input type="text"maxlength="100" size="80" placeholder="http://" />
+  </center>
+  <br/>
+  <input type="submit" value="Propagate this URL."/>
+</form>
+{% endcall %}
+
+
+{% call tile("Send this to Teh People!", "buurl") %}
+  <center>
+  <div class="taggy">http://dendritenetwork.com/bump/{you}/{it}/</div>
+  </center>
+  <br/>
+  Send this "bump" URL to your friends.
+{% endcall %}
+
+
+
 {% call tile("How It Works", "how") %}
 <p>The Dendrite Network works by logging the voluntary spread of memes
 (ideas) and making the log public.  You can watch the growth of the
