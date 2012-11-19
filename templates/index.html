@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% macro tile(title) -%}
-<div class="row"><div class="twelve columns" ><div class="panel">
+{% macro tile(title, id) -%}
+<div class="row"><div class="twelve columns" ><div id="{{ id }}" class="panel">
 <h2>{{ title }}</h2>
 {{ caller() }}
 </div></div></div>
@@ -12,16 +12,10 @@ $(function() {
 </script>
 {% endblock %}
 {% block content %}
-<div class="row">
-<div class="twelve columns" >
-<div id="slider" class="panel">
-</div>
-</div>
-</div>
 
-{% call tile("How It Works") %}
-        <center><span class="heavy">How It Works</span></center>
-        <br>
+{% call tile("How It Works", "how") %}
+<center><span class="heavy">How It Works</span></center>
+<br>
 {% endcall %}
 
 
