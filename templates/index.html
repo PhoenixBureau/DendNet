@@ -1,4 +1,10 @@
 {% extends "base.html" %}
+{% macro tile(title) -%}
+<div class="row"><div class="twelve columns" ><div class="panel">
+<h2>{{ title }}</h2>
+{{ caller() }}
+</div></div></div>
+{%- endmacro %}
 {% block extrahead %}
 <script type="text/javascript">
 $(function() {
