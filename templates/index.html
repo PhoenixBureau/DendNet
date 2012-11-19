@@ -18,6 +18,32 @@ $(function() {
 <p>The Dendrite Network works by...
 {% endcall %}
 
+{% call tile("Your URL", "ownurl") %}
+<p>If you want to participate directly in the network you must pick an
+URL to represent yourself.  It can be any URL but if you want to be
+contacted then it should obviously include some way of contacting you.
+<p>Obvious candidates for avatar URLs would be your facebook or twitter
+pages, your blog, your personal homepage, or a specific page you made to
+use with the Dendrite Network.
+<p>If you aren't concerned about being contacted then you can use a page
+from the Wikipedia or something.
+<p>(An important point to keep in mind concerning the Dendrite Network is
+that you will generally only ever be exchanging memes with people you
+know.
+<p>All the people in your contacts should be known to you, and you
+normally won't exchange information with unknown users.)
+
+<hr>
+<h3>Enter an URL</h3>
+<form class="nice" method="POST" action="{{ register }}">
+  <center>
+  <input id="urly" type="text" name="urly" maxlength="100" size="80" placeholder="http://" />
+  </center>
+  <br/>
+  <input type="submit" value="Give me a tag for this URL"/>
+</form>
+{% endcall %}
+
 {% call tile("More...", "enfriendly") %}
 <div class="row">
 <div class="seven columns" >
