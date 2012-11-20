@@ -64,18 +64,14 @@ $(function() {
 
 <div id="reject_dialog" class="reveal-modal">
   <h1>Reject...</h1>
-  <div>
-    This is where you have a place to enter the reason you're rejecting this site.
-    You can send it to either the site owner, the person who sent you to this site, or both.
-  </div>
-  <div class="rejform">
-    <form class="nice">
+  <p>This is where you have a place to log the reason you're rejecting this site.
+    When you send it it will appear in the Dendrite Network public log
+    where anyone can see it.
+    <span style="font-size:smaller">(So don't say anything mean.)</span>
+
+  <div class="rejform"><form class="nice">
       <textarea name="reject_reason" cols="40" rows="4" id="id_reject_reason" placeholder="Enter your reason here if you want to..."></textarea>
-      <input type="checkbox" id="id_a" name="a"><label for="id_a">The contact who sent this to you.</label>
-      <br/>
-      <input type="checkbox" id="id_b" name="b"><label for="id_b">The site owner</label>
-    </form>
-  </div>
+  </form></div>
   <div>
     <button id="reject_ok">Send Rejection</button>
     <button id="reject_no">Cancel</button>
