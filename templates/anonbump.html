@@ -16,22 +16,22 @@ $(function() {
   var own_tag_from_cookie = get_own_tag();
   if (own_tag_from_cookie != '') {
     window.location.href = base_url + own_tag_from_cookie + '/';
+  } else {
+    $('#ururl').find('input:submit').button().click(function() {
+      var urly = $('#own_url_id').val();
+      if (urly != '') {
+        $.post('{{ register_ajax }}',
+          {'urly': urly},
+          function (data) {
+            tag = data.tag;
+            note_own_tag(tag);
+            note_own_url(urly);
+            window.location.href = base_url + tag + '/';
+          });
+      }
+      return false;
+    });
   }
-
-  $('#ururl').find('input:submit').button().click(function() {
-    var urly = $('#own_url_id').val();
-    if (urly != '') {
-      $.post('{{ register_ajax }}',
-        {'urly': urly},
-        function (data) {
-          tag = data.tag;
-          note_own_tag(tag);
-          note_own_url(urly);
-          window.location.href = base_url + tag + '/';
-        });
-    }
-    return false;
-  });
 });
 </script>
 {% endblock %}
