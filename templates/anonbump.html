@@ -12,7 +12,7 @@
 <script type="text/javascript">
 $(function() {
 
-  var base_url = "/{{ me }}/{{ it }}/";
+  var base_url = "/bump/{{ me }}/{{ it }}/";
   var own_tag_from_cookie = get_own_tag();
   if (own_tag_from_cookie != '') {
     window.location.href = base_url + own_tag_from_cookie + '/';
