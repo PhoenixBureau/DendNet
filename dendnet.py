@@ -60,6 +60,7 @@ def reg_ajax():
 @app.route("/bump/<me>/<it>/")
 def anonbump(me, it):
     data = dict(
+        register_ajax='regy',
         from_url=retrieve(me),
         what_url=retrieve(it),
         me=me,
