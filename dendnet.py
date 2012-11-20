@@ -34,7 +34,7 @@ app = Flask(__name__)
 def index():
     return render_template(
         'index.html',
-        register_ajax='regy',
+        register_ajax='/regy',
         )
 
 
@@ -42,8 +42,8 @@ def index():
 def reg():
     return render_template(
         'register.html',
-        register_ajax='regy',
-        register='regy',
+        register_ajax='/regy',
+        register='/regy',
         )
 
 
@@ -60,7 +60,7 @@ def reg_ajax():
 @app.route("/bump/<me>/<it>/")
 def anonbump(me, it):
     data = dict(
-        register_ajax='regy',
+        register_ajax='/regy',
         from_url=retrieve(me),
         what_url=retrieve(it),
         me=me,
