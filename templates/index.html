@@ -17,17 +17,38 @@
 <script type="text/javascript">
 $(function() {
 
+  function make_bump_url() {
+    var from = $('div#own_tag_display').text();
+    var what = $('div#prop_tag_display').text();
+    var bumpy = 'http://dendritenetwork.com/bump/' + from + '/' + what + '/';
+    $('#buurl').find('.taggy').text(bumpy);
+  }
+
   $('#ururl').find('input:submit').button().click(function() {
     var urly = $('#own_url_id').val();
     if (urly != '') {
       $.post('{{ register_ajax }}',
         {'urly': urly},
-        function tag_callback(data) {
+        function (data) {
           tag = data.tag;
           note_own_tag(tag);
           note_own_url(urly);
           $('div#own_tag_display').text(tag);
           $('#own_url_id').effect('highlight', {}, 500);
+        });
+    }
+    return false;
+  });
+
+  $('#tagurl').find('input:submit').button().click(function() {
+    var urly = $('#prop_url_id').val();
+    if (urly != '') {
+      $.post('{{ register_ajax }}',
+        {'urly': urly},
+        function (data) {
+          tag = data.tag;
+          $('div#prop_tag_display').text(tag);
+          $('#prop_url_id').effect('highlight', {}, 500, make_bump_url);
         });
     }
     return false;
@@ -60,10 +81,9 @@ $(function() {
 
 
 {% call tile("Tag and Propagate", "tagurl") %}
+<p>This is the URL of the meme you want to spread.
 <form class="nice" method="POST" action="{{ register }}">
-  <center>
-  <input type="text"maxlength="100" size="80" placeholder="http://" />
-  </center>
+  <input id="prop_url_id" name="prop_url" type="text" maxlength="100" placeholder="http://" />
   <br/>
   <input type="submit" value="Propagate this URL."/>
 </form>
@@ -148,8 +168,12 @@ normally won't exchange information with unknown users.)
   Click here to update a contact or add a new one. The tag for the URL will be retrieved from the Dendrite Network automatically.
   <input type="submit" value="Add or Modify"/>
 </form>
+{% endcall %}
+
+{% call tile("View tags", "vtags") %}
 
   <div id="own_tag_display" class="taggy">no tag here yet... choose an URL above</div>
+  <div id="prop_tag_display" class="taggy">no tag here yet... choose an URL above</div>
 
 {% endcall %}
 {% endblock %}

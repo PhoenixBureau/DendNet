@@ -90,7 +90,7 @@ label {
   display: inline-block ! important;
 }
 
-#urly, #own_url_id {
+#urly, #own_url_id, #prop_url_id {
   width: 92%;
   margin-bottom: 0.5em;
 }
