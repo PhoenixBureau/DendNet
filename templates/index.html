@@ -50,7 +50,8 @@ $(function() {
         function (data) {
           tag = data.tag;
           $('div#prop_tag_display').text(tag);
-          $('#prop_url_id').effect('highlight', {}, 500, make_bump_url);
+          $('#prop_url_id').effect('highlight', {}, 500);
+          make_bump_url();
         });
     }
     return false;
