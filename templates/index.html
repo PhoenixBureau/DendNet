@@ -37,6 +37,7 @@ $(function() {
           note_own_url(urly);
           $('div#own_tag_display').text(tag);
           $('#own_url_id').effect('highlight', {}, 500);
+          setted_own_url();
         });
     }
     return false;
@@ -65,7 +66,14 @@ $(function() {
   var own_url_from_cookie = get_own_url();
   if (own_url_from_cookie != '') {
     $('#own_url_id').val(own_url_from_cookie);
+    setted_own_url();
   }
+
+function setted_own_url() {
+  var U = $('#ururl');
+  U.find('h2').text('Your URL')
+  U.find('input:submit').text('Update my URL')
+}
 
 });
 </script>
