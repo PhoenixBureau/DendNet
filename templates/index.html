@@ -16,11 +16,6 @@
 <script type="text/javascript">
 $(function() {
 
-  var own_tag_from_cookie = get_own_tag();
-  if (own_tag_from_cookie != "") {
-    $("div#own_tag_display").text(own_tag_from_cookie);
-  }
-
   $('#ururl').find("input:submit").button().click(function() {
     var urly = $('#own_url_id').val();
     if (urly != "") {
@@ -34,6 +29,11 @@ $(function() {
     }
     return false;
   });
+
+  var own_tag_from_cookie = get_own_tag();
+  if (own_tag_from_cookie != "") {
+    $("div#own_tag_display").text(own_tag_from_cookie);
+  }
 
 });
 </script>
