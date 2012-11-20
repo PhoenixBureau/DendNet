@@ -8,11 +8,6 @@
 {%- endmacro %}
 {% block extrahead %}
 <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
-<script type="text/javascript" src="/static/js/d3.min.js"></script>
-<script type="text/javascript" src="/static/js/d3.geom.min.js"></script>
-<script type="text/javascript" src="/static/js/d3.layout.min.js"></script>
-<script type="text/javascript" src="/static/js/graphdemo.js"></script>
-<link href="/static/css/graphdemo.css" rel="stylesheet">
 <script type="text/javascript" src="/static/js/controls.js"></script>
 <script type="text/javascript">
 $(function() {
@@ -98,77 +93,6 @@ $(function() {
   Send this "bump" URL to your friends.
 {% endcall %}
 
-
-
-{% call tile("How It Works", "how") %}
-<p>The Dendrite Network works by logging the voluntary spread of memes
-(ideas) and making the log public.  You can watch the growth of the
-network through visualizations like the one below.
-<p>You have a small circle of contacts that you exchange "bump URLs"
-with.  When you visit one of these URLs you have the choice of three
-actions:
-<ul>
-<li><span class="heavy">Forward</span>
-<li><span class="heavy">Engage</span>
-<li><span class="heavy">Reject</span>
-</ul>
-<p>Each action is recorded in the public log.
-{% endcall %}
-
-{% call tile("Network Spread", "demograph") %}
-<p>Click in the graphic below to see a dynamic demonstration of network
-growth in action.
-
-<div class="hull"></div>
-
-<p>When you visit a bump URL a link is created on the
-graph from your dot to the sender's dot.  When you send bump URLs to
-your contacts and they visit them, links are created from those
-contacts to you.
-<p>
-{% endcall %}
-
-{% call tile("Your URL", "ownurl") %}
-<p>If you want to participate directly in the network you must pick an
-URL to represent yourself.  It can be any URL but if you want to be
-contacted then it should obviously include some way of contacting you.
-<p>Obvious candidates for avatar URLs would be your facebook or twitter
-pages, your blog, your personal homepage, or a specific page you made to
-use with the Dendrite Network.
-<p>If you aren't concerned about being contacted then you can use a page
-from the Wikipedia or something.
-<p>(An important point to keep in mind concerning the Dendrite Network is
-that you will generally only ever be exchanging memes with people you
-know.
-<p>All the people in your contacts should be known to you, and you
-normally won't exchange information with unknown users.)
-
-<hr>
-<h4>Enter an URL</h4>
-<form class="nice" method="POST" action="{{ register }}">
-  <center>
-  <input id="urly" type="text" name="urly" maxlength="100" placeholder="http://" />
-  </center>
-  <br/>
-  <input type="submit" value="Use this URL to represent me."/>
-</form>
-{% endcall %}
-
-{% call tile("Your Contacts", "urcontacts") %}
-<p>These are the people in your contacts cookie.
-<div class="contacts"></div>
-<form class="nice" method="POST" action="">
-  <center>
-  <input id="urly" type="text" name="new_contact_label" maxlength="100" placeholder="Name or Label" />
-  <br/>
-  <input id="urly" type="text" name="new_contact_url" maxlength="100" placeholder="http://" />
-  <div class="taggy">tag</div>
-  </center>
-  <br/>
-  Click here to update a contact or add a new one. The tag for the URL will be retrieved from the Dendrite Network automatically.
-  <input type="submit" value="Add or Modify"/>
-</form>
-{% endcall %}
 
 {% call tile("View tags", "vtags") %}
 
