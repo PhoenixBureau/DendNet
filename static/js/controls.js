@@ -63,7 +63,7 @@ function note_own_url(url) {
 }
 
 function get_own_url() {
-  var tag = $.cookie("own_url");
+  var url = $.cookie("own_url");
   if (_.isNull(url)) {
     return '';
   }
