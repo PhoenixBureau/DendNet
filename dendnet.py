@@ -58,6 +58,10 @@ def reg_ajax():
 
 
 @app.route("/bump/<me>/<it>/")
+def anonbumphook(me, it):
+    return render_template('anonbumphook.html')
+
+
 def anonbump(me, it):
     data = dict(
         register_ajax='/regy',
@@ -66,11 +70,13 @@ def anonbump(me, it):
         me=me,
         it=it,
         )
-    return render_template( 'anonbump.html', **data)
+    return render_template('anonbump.html', **data)
 
 
 @app.route("/bump/<me>/<it>/<you>/")
 def bump(me, it, you):
+    if you == 'anon':
+        return anonbump(me, it)
     data = dict(
         from_url=retrieve(me),
         iframe_url=retrieve(it),
@@ -80,7 +86,7 @@ def bump(me, it, you):
         you=you,
         )
     log.info('bump %s %s %s', me, it, you)
-    return render_template( 'bump.html', **data)
+    return render_template('bump.html', **data)
 
 
 

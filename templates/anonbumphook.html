@@ -1,58 +1,22 @@
-{% extends "base.html" %}
-{% macro tile(title, id) -%}
-<div class="row"><div class="twelve columns" ><div id="{{ id }}" class="panel">
-<h2>{{ title }}</h2>
-{{ caller() }}
-<br>
-</div></div></div>
-{%- endmacro %}
-{% block extrahead %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head>
+<script type="text/javascript" src="/static/js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
-<script type="text/javascript" src="/static/js/controls.js"></script>
 <script type="text/javascript">
 $(function() {
-
-  var own_tag_from_cookie = get_own_tag();
-  if (own_tag_from_cookie != '') {
-    window.location.href = window.location.href + own_tag_from_cookie + '/';
+  var own_tag_from_cookie = $.cookie("own_tag");
+  var jump_target = '#';
+  if (own_tag_from_cookie === null) {
+    jump_target = window.location.href + 'anon/';
+  } else {
+    jump_target = window.location.href + own_tag_from_cookie + '/';
   }
-
-  $('#ururl').find('input:submit').button().click(function() {
-    var urly = $('#own_url_id').val();
-    if (urly != '') {
-      $.post('{{ register_ajax }}',
-        {'urly': urly},
-        function (data) {
-          tag = data.tag;
-          note_own_tag(tag);
-          note_own_url(urly);
-          window.location.href = window.location.href + tag + '/';
-        });
-    }
-    return false;
-  });
+  window.location.href = jump_target;
 });
 </script>
-{% endblock %}
-{% block content %}
-
-{% call tile("Pick Your URL", "ururl") %}
-<p>To access the meme and participate in the Dendrite Network choose a
-website to represent yourself and enter the URL here.
-<form class="nice" method="POST" action="{{ register }}">
-  <input id="own_url_id" name="own_url" type="text" maxlength="100" placeholder="http://" />
-  <br/>
-  <input type="submit" value="Use this URL for me."/>
-</form>
-<p>Once you click the button you'll be directed to the page your friend
-wants to share with you and your interaction (or "bump") will be noted
-in the public DN log.
-{% endcall %}
-
-{% call tile("Visit Directly", "donotpassgo") %}
-<p>Or you can just <a href="{{ what_url }}">visit the link directly</a>.
-You'll see the site your friend wanted to share with you, but you won't
-be participating in the Dendrite Network, and NO information will be
-collected about your visit.
-{% endcall %}
-{% endblock %}
+<title>Dendrite Network Check For Own Tag</title>
+</head>
+<body>
+<h1>Dendrite Network Check For Own Tag</h1>
+Checking for own_tag cookie...
+</body></html>
