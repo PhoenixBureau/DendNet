@@ -12,9 +12,10 @@
 <script type="text/javascript">
 $(function() {
 
+  var base_url = "/{{ me }}/{{ it }}/";
   var own_tag_from_cookie = get_own_tag();
   if (own_tag_from_cookie != '') {
-    window.location.href = window.location.href + own_tag_from_cookie + '/';
+    window.location.href = base_url + own_tag_from_cookie + '/';
   }
 
   $('#ururl').find('input:submit').button().click(function() {
@@ -26,7 +27,7 @@ $(function() {
           tag = data.tag;
           note_own_tag(tag);
           note_own_url(urly);
-          window.location.href = window.location.href + tag + '/';
+          window.location.href = base_url + tag + '/';
         });
     }
     return false;
