@@ -57,6 +57,17 @@ def reg_ajax():
     return 'error storing %r' % ({tag: url},)
 
 
+@app.route("/bump/<me>/<it>/")
+def bump(me, it):
+    data = dict(
+        from_url=retrieve(me),
+        what_url=retrieve(it),
+        me=me,
+        it=it,
+        )
+    return render_template( 'anonbump.html', **data)
+
+
 @app.route("/bump/<me>/<it>/<you>")
 def bump(me, it, you):
     data = dict(

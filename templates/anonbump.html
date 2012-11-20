@@ -12,6 +12,11 @@
 <script type="text/javascript">
 $(function() {
 
+  var own_tag_from_cookie = get_own_tag();
+  if (own_tag_from_cookie != '') {
+    window.location.href = window.location.href + own_tag_from_cookie + '/';
+  }
+/*
   // Disable self-clicking of the bump URL.
   $('#buurl').find('.taggy').find("a").click(function() { return false; });
 
@@ -61,11 +66,6 @@ $(function() {
     return false;
   });
 
-  var own_tag_from_cookie = get_own_tag();
-  if (own_tag_from_cookie != '') {
-    $('div#own_tag_display').text(own_tag_from_cookie);
-  }
-
   var own_url_from_cookie = get_own_url();
   if (own_url_from_cookie != '') {
     $('#own_url_id').val(own_url_from_cookie);
@@ -77,7 +77,7 @@ function setted_own_url() {
   U.find('h2').text('Your URL')
   U.find('input:submit').val('Update my URL')
 }
-
+*/
 });
 </script>
 {% endblock %}
@@ -85,37 +85,23 @@ function setted_own_url() {
 
 
 {% call tile("Pick Your URL", "ururl") %}
-<p>When you make a meme to send to your people this URL will be used to represent you.
+<p>To access the meme and participate in the Dendrite Network choose a
+website to represent yourself and enter the URL here.
 <form class="nice" method="POST" action="{{ register }}">
   <input id="own_url_id" name="own_url" type="text" maxlength="100" placeholder="http://" />
   <br/>
   <input type="submit" value="Use this URL for me."/>
 </form>
+<p>Once you click the button you'll be directed to the page your friend
+wants to share with you and your interaction (or "bump") will be noted
+in the public DN log.
 {% endcall %}
 
-
-{% call tile("Tag and Propagate", "tagurl") %}
-<p>This is the URL of the meme you want to spread.
-<form class="nice" method="POST" action="{{ register }}">
-  <input id="prop_url_id" name="prop_url" type="text" maxlength="100" placeholder="http://" />
-  <br/>
-  <input type="submit" value="Propagate this URL."/>
-</form>
-{% endcall %}
-
-
-{% call tile("Send This to Teh People!", "buurl") %}
-<p>(Hint: right-click and select "Copy Link Location".)
-<div class="taggy"><a href="#"></a></div>
-<br/>
-<p>Send this "bump" URL to your friends.  Use Twitter, email, pigeons, whatever...
-Just get it to your friends and the network grows.
-<br/>
-{% endcall %}
-
-{% call tile("View tags", "vtags") %}
-  <div id="own_tag_display" class="taggy"></div>
-  <div id="prop_tag_display" class="taggy"></div>
+{% call tile("Visit Directly", "donotpassgo") %}
+<p>Or you can just <a href="{{ what_url }}">visit the link directly</a>.
+You'll see the site your friend wanted to share with you, but you won't
+be participating in the Dendrite Network, and NO information will be
+collected about your visit.
 {% endcall %}
 {% endblock %}
 
