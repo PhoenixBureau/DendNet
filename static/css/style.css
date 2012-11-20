@@ -9,6 +9,7 @@ body {
 
 .container {
     background-color: #d8d8d8;
+    background-image: url(/static/renzler.png);
 }
 
 #slider, #show {
