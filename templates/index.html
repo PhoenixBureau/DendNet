@@ -17,15 +17,16 @@
 <script type="text/javascript">
 $(function() {
 
-  $('#ururl').find("input:submit").button().click(function() {
+  $('#ururl').find('input:submit').button().click(function() {
     var urly = $('#own_url_id').val();
-    if (urly != "") {
-      $.post("{{ register_ajax }}",
+    if (urly != '') {
+      $.post('{{ register_ajax }}',
         {'urly': urly},
         function tag_callback(data) {
           tag = data.tag;
           note_own_tag(tag);
-          $("div#own_tag_display").text(tag);
+          note_own_url(urly);
+          $('div#own_tag_display').text(tag);
           $('#own_url_id').effect('highlight', {}, 500);
         });
     }
@@ -33,8 +34,13 @@ $(function() {
   });
 
   var own_tag_from_cookie = get_own_tag();
-  if (own_tag_from_cookie != "") {
-    $("div#own_tag_display").text(own_tag_from_cookie);
+  if (own_tag_from_cookie != '') {
+    $('div#own_tag_display').text(own_tag_from_cookie);
+  }
+
+  var own_url_from_cookie = get_url_tag();
+  if (own_url_from_cookie != '') {
+    $('#own_url_id').val(own_url_from_cookie);
   }
 
 });

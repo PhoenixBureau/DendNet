@@ -55,6 +55,21 @@ function get_own_tag() {
   return tag;
 }
 
+function note_own_url(url) {
+  $.cookie("own_url", url, {
+    expires: 35,
+    path: '/',
+  })
+}
+
+function get_own_url() {
+  var tag = $.cookie("own_url");
+  if (_.isNull(url)) {
+    return '';
+  }
+  return url;
+}
+
 function get_contacts() {
   var contacts_cookie = $.cookie("contacts");
   if (_.isNull(contacts_cookie)) {
