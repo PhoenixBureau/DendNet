@@ -16,7 +16,9 @@ $(function() {
     var from = $('div#own_tag_display').text();
     var what = $('div#prop_tag_display').text();
     var bumpy = 'http://dendritenetwork.com/bump/' + from + '/' + what + '/';
-    $('#buurl').find('.taggy').text(bumpy);
+    var bulink = $('#buurl').find('.taggy').find('a')
+    bulink.text(bumpy);
+    bulink.attr('href', bumpy);
   }
 
   $('#ururl').find('input:submit').button().click(function() {
@@ -86,10 +88,16 @@ $(function() {
 
 
 {% call tile("Send This to Teh People!", "buurl") %}
-  <div class="taggy">http://dendritenetwork.com/bump/{you}/{it}/</div>
-  <br/>
-  Send this "bump" URL to your friends.
-  <br/>
+<p>(Hint: right-click and select "Copy Link Location".)
+<div class="taggy">
+  <a href="http://dendritenetwork.com/bump/{you}/{it}/">
+  http://dendritenetwork.com/bump/{you}/{it}/
+  </a>
+</div>
+<br/>
+<p>Send this "bump" URL to your friends.  Use Twitter, email, pigeons, whatever...
+Just get it to your friends and the network grows.
+<br/>
 {% endcall %}
 
 
