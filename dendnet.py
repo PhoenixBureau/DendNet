@@ -58,7 +58,7 @@ def reg_ajax():
 
 
 @app.route("/bump/<me>/<it>/")
-def bump(me, it):
+def anonbump(me, it):
     data = dict(
         from_url=retrieve(me),
         what_url=retrieve(it),
