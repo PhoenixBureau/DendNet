@@ -68,7 +68,7 @@ def anonbump(me, it):
     return render_template( 'anonbump.html', **data)
 
 
-@app.route("/bump/<me>/<it>/<you>")
+@app.route("/bump/<me>/<it>/<you>/")
 def bump(me, it, you):
     data = dict(
         from_url=retrieve(me),
