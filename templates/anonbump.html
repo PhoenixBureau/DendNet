@@ -16,6 +16,22 @@ $(function() {
   if (own_tag_from_cookie != '') {
     window.location.href = window.location.href + own_tag_from_cookie + '/';
   }
+
+  $('#ururl').find('input:submit').button().click(function() {
+    var urly = $('#own_url_id').val();
+    if (urly != '') {
+      $.post('{{ register_ajax }}',
+        {'urly': urly},
+        function (data) {
+          tag = data.tag;
+          note_own_tag(tag);
+          note_own_url(urly);
+          window.location.href = window.location.href + tag + '/';
+        });
+    }
+    return false;
+  });
+
 /*
   // Disable self-clicking of the bump URL.
   $('#buurl').find('.taggy').find("a").click(function() { return false; });
@@ -32,24 +48,6 @@ $(function() {
     bulink.text(bumpy);
     bulink.attr('href', bumpy);
   }
-
-  $('#ururl').find('input:submit').button().click(function() {
-    var urly = $('#own_url_id').val();
-    if (urly != '') {
-      $.post('{{ register_ajax }}',
-        {'urly': urly},
-        function (data) {
-          tag = data.tag;
-          note_own_tag(tag);
-          note_own_url(urly);
-          $('div#own_tag_display').text(tag);
-          $('#own_url_id').effect('highlight', {}, 500);
-          setted_own_url();
-          make_bump_url();
-        });
-    }
-    return false;
-  });
 
   $('#tagurl').find('input:submit').button().click(function() {
     var urly = $('#prop_url_id').val();
