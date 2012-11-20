@@ -15,6 +15,8 @@ $(function() {
   // Disable self-clicking of the bump URL.
   $('#buurl').find('.taggy').find("a").click(function() { return false; });
 
+  $('#vtags').hide();
+
   function make_bump_url() {
     var from = $('div#own_tag_display').text();
     var what = $('div#prop_tag_display').text();
