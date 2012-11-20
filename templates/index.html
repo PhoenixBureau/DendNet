@@ -26,6 +26,7 @@ $(function() {
           tag = data.tag;
           note_own_tag(tag);
           $("div#own_tag_display").text(tag);
+          $('#own_url_id').effect('highlight', {}, 500);
         });
     }
     return false;
@@ -43,6 +44,7 @@ $(function() {
 
 
 {% call tile("Pick Your URL", "ururl") %}
+<p>When you make a meme to send to your people this URL will be used to represent you.
 <form class="nice" method="POST" action="{{ register }}">
   <input id="own_url_id" name="own_url" type="text" maxlength="100" placeholder="http://" />
   <br/>
