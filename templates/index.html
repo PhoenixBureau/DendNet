@@ -18,8 +18,10 @@ $(function() {
   $('#vtags').hide();
 
   function make_bump_url() {
-    var from = $('div#own_tag_display').text();
+    var from = get_own_tag();
+    if (from == '') { return; }
     var what = $('div#prop_tag_display').text();
+    if (what == '') { return; }
     var bumpy = 'http://denebii:5000/bump/' + from + '/' + what + '/';
     var bulink = $('#buurl').find('.taggy').find('a')
     bulink.text(bumpy);
@@ -38,6 +40,7 @@ $(function() {
           $('div#own_tag_display').text(tag);
           $('#own_url_id').effect('highlight', {}, 500);
           setted_own_url();
+          make_bump_url();
         });
     }
     return false;
@@ -111,8 +114,8 @@ Just get it to your friends and the network grows.
 {% endcall %}
 
 {% call tile("View tags", "vtags") %}
-  <div id="own_tag_display" class="taggy">no tag here yet... choose an URL above</div>
-  <div id="prop_tag_display" class="taggy">no tag here yet... choose an URL above</div>
+  <div id="own_tag_display" class="taggy"></div>
+  <div id="prop_tag_display" class="taggy"></div>
 {% endcall %}
 {% endblock %}
 
