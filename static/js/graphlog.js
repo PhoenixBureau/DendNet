@@ -56,7 +56,7 @@ var w = 420,
 
 
 function update_select() {
-  _.each(bumps, function(key, value) {
+  _.each(bumps, function(value, key) {
     var opt = $("<option></option>", {value: key, text: key});
     $('#meme_selector').append(opt);
   });
