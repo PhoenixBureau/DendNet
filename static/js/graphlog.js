@@ -1,4 +1,13 @@
-var node_urls = ["http://docs.python.org/2/library/index.html", "http://phoenixbureau.org/", "http://www.phoenixbureau.org/", "http://docs.jquery.com/", "http://firequery.blogspot.com/", "http://denebii:5000/", "http://www.booger.org/", "http://openkeyval.org/", "https://wiki.ubuntu.com/", "https://twitter.com/SimonForman", "https://github.com/PhoenixBureau", "https://github.com/PhoenixBureau/DendNet"];
+var node_urls = [
+  "http://phoenixbureau.org/",
+  "http://www.phoenixbureau.org/",
+  "http://firequery.blogspot.com/",
+  "http://denebii:5000/",
+  "http://openkeyval.org/",
+  "https://wiki.ubuntu.com/",
+  "https://twitter.com/SimonForman",
+  "https://github.com/PhoenixBureau/DendNet"
+];
 
 var bumps = {
   "https://wiki.ubuntu.com/": [
