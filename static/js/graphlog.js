@@ -81,6 +81,7 @@ $('#meme_selector').change(function() {
   var meme = $(this).val();
   var meme_graph = bumps[meme];
   links.length = 0;
+  restart();
   _.each(meme_graph, function(pair) {
     var from_ = get_node_from_url(pair[0]);
     var to_ = get_node_from_url(pair[1]);
