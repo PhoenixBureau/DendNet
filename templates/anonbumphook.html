@@ -5,18 +5,15 @@
 <script type="text/javascript">
 $(function() {
   var own_tag_from_cookie = $.cookie("own_tag");
-  var jump_target = '#';
-  if (own_tag_from_cookie === null) {
-    jump_target = window.location.href + 'anon/';
-  } else {
-    jump_target = window.location.href + own_tag_from_cookie + '/';
-  }
-  window.location.href = jump_target;
+  window.location.href = ((own_tag_from_cookie === null) 
+    ? window.location.href + 'anon/'
+    : window.location.href + own_tag_from_cookie + '/';
 });
 </script>
 <title>Dendrite Network Check For Own Tag</title>
 </head>
 <body>
-<h1>Dendrite Network Check For Own Tag</h1>
+<h1>Dendrite Network</h1>
+<h3>Checking For "Own Tag"</h3>
 Checking for own_tag cookie...
 </body></html>

@@ -11,7 +11,6 @@
 <script type="text/javascript" src="/static/js/controls.js"></script>
 <script type="text/javascript">
 $(function() {
-
   var base_url = "/bump/{{ me }}/{{ it }}/";
   var own_tag_from_cookie = get_own_tag();
   if (own_tag_from_cookie != '') {
@@ -36,21 +35,18 @@ $(function() {
 </script>
 {% endblock %}
 {% block content %}
-
 {% call tile("Pick Your URL", "ururl") %}
-<p>To access the meme and participate in the Dendrite Network choose a
-website to represent yourself and enter the URL here.
+<p>Someone wants to share a website with you through the Dendrite Network.
+<p>To participate pick a website to represent you and enter the URL here.
 <form class="nice" method="POST" action="{{ register }}">
   <input id="own_url_id" name="own_url" type="text" maxlength="100" placeholder="http://" />
   <br/>
   <input type="submit" value="Use this URL for me."/>
 </form>
 <p>Once you click the button you'll be directed to the page your friend
-wants to share with you and your interaction (or "bump") will be noted
-in the public DN log.
+wants to share with you.
 {% endcall %}
-
-{% call tile("Visit Directly", "donotpassgo") %}
+{% call tile("Or Visit Directly", "donotpassgo") %}
 <p>Or you can just <a href="{{ what_url }}">visit the link directly</a>.
 You'll see the site your friend wanted to share with you, but you won't
 be participating in the Dendrite Network, and NO information will be
