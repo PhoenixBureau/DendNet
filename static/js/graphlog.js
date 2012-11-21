@@ -59,7 +59,7 @@ function update_select() {
   _.each(bumps, function(key, value) {
     var opt = $("<option></option>", {value: key, text: key});
     $('#meme_selector').append(opt);
-  }
+  });
 }
 
 $(function() {
