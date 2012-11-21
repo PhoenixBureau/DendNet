@@ -55,6 +55,13 @@ var w = 420,
         ).interpolate(d3.interpolateHsl);
 
 
+function update_select() {
+  _.each(bumps, function(key, value) {
+    var opt = $("<option></option>", {value: key, text: key});
+    $('#meme_selector').append(opt);
+  }
+}
+
 $(function() {
 
 var nodes = _.map(node_urls, function(node_url) {
@@ -111,6 +118,7 @@ function restart() {
   force.start();
 }
 
+update_select();
 restart();
 
 });
