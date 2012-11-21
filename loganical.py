@@ -1,5 +1,6 @@
 from datetime import datetime
 from collections import defaultdict
+import json
 import requests
 
 
@@ -32,7 +33,7 @@ class Logan:
     self.REGISTER.setdefault(tag, url[2:-1])
 
   def bump(self, dt, from_, what, to):
-    self.BUMPS[what].add((from_, to))
+    self.BUMPS[from_, what].add((dt, to))
 
   def engage(self, dt, from_, what, to):
     self.ENGAGES[what].add((from_, to))
@@ -41,19 +42,40 @@ class Logan:
     return self.REGISTER.get(tag, tag)
 
 
+class JSONMixin:
+
+  def bump(self, dt, from_, what, to):
+    if from_ == to:
+      return
+    self.BUMPS[self.retrieve(what)].add(tuple(map(self.retrieve, (from_, to))))
+
+  def engage(self, dt, from_, what, to):
+    if from_ == to:
+      return
+    self.ENGAGES[self.retrieve(what)].add(tuple(map(self.retrieve, (from_, to))))
+
+  def _post(self):
+    self.BUMPS = dict((k, list(v)) for k, v in self.BUMPS.iteritems())
+    self.ENGAGES = dict((k, list(v)) for k, v in self.ENGAGES.iteritems())
+
+
+class JSONLogan(JSONMixin, Logan):
+  pass
+
+
 if __name__ == '__main__':
   from pprint import pprint
 
 
   data = requests.get(LOG_URL).text.splitlines(False)
-  el = Logan()
+  el = JSONLogan()
   for line in data:
     el.process(line)
+  el._post()
 
-
-  pprint(el.REGISTER)
-  print ; print
-  pprint(dict(el.BUMPS))
-  print ; print
-  pprint(dict(el.ENGAGES))
+  pprint(json.dumps(el.REGISTER.values()))
+  print ; print 'Bumps:'
+  print json.dumps(el.BUMPS, indent=2)
+  print ; print 'Engages:'
+  print json.dumps(el.ENGAGES, indent=2)
   print ; print

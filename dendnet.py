@@ -95,6 +95,13 @@ def engage(me, it, you):
     return jsonify(result=True)
 
 
+@app.route('/graph')
+def graph():
+    return render_template(
+        'graphlog.html',
+        )
+
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0')
