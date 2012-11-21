@@ -1,7 +1,7 @@
 
 function engage_action () {
     $.get(engage_url, function(data) {
-        if (data) {
+        if (data.result) {
             window.location.href = iframe_url;
         }
     });

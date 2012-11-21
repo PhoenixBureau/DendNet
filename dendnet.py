@@ -89,6 +89,11 @@ def bump(me, it, you):
     return render_template('bump.html', **data)
 
 
+@app.route("/engage/<me>/<it>/<you>/")
+def engage(me, it, you):
+    log.info('engage %s %s %s', me, it, you)
+    return jsonify(result=True)
+
 
 if __name__ == '__main__':
     app.debug = True
