@@ -73,13 +73,15 @@ def bump(me, it, you):
         it=it,
         you=you,
         )
-    log.info('bump %s %s %s', me, it, you)
+    if me != you:
+        log.info('bump %s %s %s', me, it, you)
     return render_template('bump.html', **data)
 
 
 @app.route("/engage/<me>/<it>/<you>/")
 def engage(me, it, you):
-    log.info('engage %s %s %s', me, it, you)
+    if me != you:
+        log.info('engage %s %s %s', me, it, you)
     return jsonify(result=True)
 
 
