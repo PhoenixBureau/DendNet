@@ -71,6 +71,23 @@ var nodes = _.map(node_urls, function(node_url) {
   return node
 });
 
+function get_node_from_url(url) {
+  return _.find(nodes, function(node) {
+    return node.url == url;
+  })
+}
+
+$('#meme_selector').change(function() {
+  var meme = $(this).val();
+  var meme_graph = bumps[meme];
+  _.each(meme_graph, function(pair) {
+    var from_ = get_node_from_url(pair[0]);
+    var to_ = get_node_from_url(pair[1]);
+    links.push({source: from_, target: to_})
+  });
+  restart();
+})
+
 var vis = d3.select(".hull").append("svg:svg")
     .attr("width", w)
     .attr("height", h);
