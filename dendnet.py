@@ -32,10 +32,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template(
-        'index.html',
-        register_ajax='/regy',
-        )
+    return render_template('index.html', register_ajax='/regy')
 
 
 @app.route("/regy", methods=['POST'])
@@ -88,9 +85,7 @@ def engage(me, it, you):
 
 @app.route('/graph')
 def graph():
-    return render_template(
-        'graphlog.html',
-        )
+    return render_template('graphlog.html')
 
 
 if __name__ == '__main__':
