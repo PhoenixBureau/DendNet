@@ -13,7 +13,20 @@
 <script type="text/javascript" src="/static/js/graphlog.js"></script>
 <script type="text/javascript">
 </script>
-{% endblock %}
+<style type="text/css">
+
+.hull {
+    border: solid 1px black;
+}
+
+.node {
+}
+
+.link {
+  stroke: #222;
+}
+
+    </style>{% endblock %}
 {% block content %}
 {% call tile("Graph the Network", "tehnet") %}
 <p>The pretty pretty data...

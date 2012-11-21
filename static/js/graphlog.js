@@ -95,7 +95,7 @@ var vis = d3.select(".hull").append("svg:svg")
 var force = d3.layout.force()
     .nodes(nodes)
     .links(links)
-    .linkDistance(7)
+    .linkDistance(17)
     .size([w, h]);
 
 force.on("tick", function() {
