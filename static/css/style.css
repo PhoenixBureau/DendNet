@@ -52,6 +52,10 @@ div#urly_display {
     padding: 0.5em 2em;
 }
 
+#own_url_id, #prop_url_id {
+    font-family: 'Cutive', serif;
+}
+
 .taggy {
     border: 1px solid orange;
     background-color: #ddffdd;
@@ -90,7 +94,9 @@ label {
   display: inline-block ! important;
 }
 
-#urly, #own_url_id, #prop_url_id {
+#urly {
   width: 92%;
   margin-bottom: 0.5em;
 }
+
+
