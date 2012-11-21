@@ -74,8 +74,13 @@ $(function() {
 
 function setted_own_url() {
   var U = $('#ururl');
-  U.find('h2').text('Your URL')
-  U.find('input:submit').val('Update my URL')
+  var B = U.find('input:submit');
+  B.val('Update my URL');
+  B.prop("disabled", true);
+  $('#prop_url_id').focus();
+  $('#own_url_id').focus(function(){
+    B.prop("disabled", false);
+  });
 }
 
 });
@@ -84,19 +89,19 @@ function setted_own_url() {
 {% block content %}
 
 
-{% call tile("Pick Your URL", "ururl") %}
+{% call tile("1. Who Are You?", "ururl") %}
 <p>When you make a meme to send to people this URL will be used to represent you.
-<form class="nice" method="POST" action="{{ register }}">
+<form class="nice">
   <input id="own_url_id" name="own_url" type="text" maxlength="100" placeholder="http://" />
   <br/>
-  <input type="submit" value="Use this URL for me."/>
+  <input type="submit" value="Use this URL to represent me."/>
 </form>
 {% endcall %}
 
 
-{% call tile("Tag and Propagate", "tagurl") %}
+{% call tile("2. What's It All About?", "tagurl") %}
 <p>This is the URL of the meme you want to spread.
-<form class="nice" method="POST" action="{{ register }}">
+<form class="nice">
   <input id="prop_url_id" name="prop_url" type="text" maxlength="100" placeholder="http://" />
   <br/>
   <input type="submit" value="Propagate this URL."/>
@@ -104,7 +109,7 @@ function setted_own_url() {
 {% endcall %}
 
 
-{% call tile("Send This to Teh People!", "buurl") %}
+{% call tile("Tell the People!", "buurl") %}
 <p>(Hint: right-click and select "Copy Link Location".)
 <div class="taggy"><a href="#"></a></div>
 <br/>
