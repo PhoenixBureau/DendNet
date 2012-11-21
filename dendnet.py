@@ -38,15 +38,6 @@ def index():
         )
 
 
-@app.route("/register")
-def reg():
-    return render_template(
-        'register.html',
-        register_ajax='/regy',
-        register='/regy',
-        )
-
-
 @app.route("/regy", methods=['POST'])
 def reg_ajax():
     url = request.form['urly']
