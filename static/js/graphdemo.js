@@ -79,7 +79,7 @@ function new_node() {
 
 function new_nodesss() {
     var n = Math.ceil(Math.log(nodes.length));
-    console.log(n);
+//    console.log(n);
     if (n <= 0) { n = 1; };
     for (;n>0;n--) {
         new_node();
