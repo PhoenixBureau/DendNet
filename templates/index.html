@@ -74,13 +74,8 @@ $(function() {
 
 function setted_own_url() {
   var U = $('#ururl');
-  var B = U.find('input:submit');
-  B.val('Update my URL');
-  B.prop("disabled", true);
+  U.find('input:submit').val('Update my URL');
   $('#prop_url_id').focus();
-  $('#own_url_id').focus(function(){
-    B.prop("disabled", false);
-  });
 }
 
 });
