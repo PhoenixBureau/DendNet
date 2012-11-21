@@ -7,7 +7,7 @@ $(function() {
   var own_tag_from_cookie = $.cookie("own_tag");
   window.location.href = ((own_tag_from_cookie === null) 
     ? window.location.href + 'anon/'
-    : window.location.href + own_tag_from_cookie + '/';
+    : window.location.href + own_tag_from_cookie + '/');
 });
 </script>
 <title>Dendrite Network Check For Own Tag</title>
