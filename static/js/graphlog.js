@@ -84,7 +84,7 @@ force.on("tick", function() {
   vis.selectAll("circle.node")
       .attr("cx", function(d) { return d.x; })
       .attr("cy", function(d) { return d.y; })
-      .attr("fill", function(d) { return colors(d.contacts.length); });
+      .attr("fill", function(d) { return colors(2); });
 });
 
 function restart() {
