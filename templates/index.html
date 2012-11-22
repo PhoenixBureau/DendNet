@@ -22,7 +22,7 @@ $(function() {
     if (from == '') { return; }
     var what = $('div#prop_tag_display').text();
     if (what == '') { return; }
-    var bumpy = 'http://denebii:5000/bump/' + from + '/' + what + '/';
+    var bumpy = base_url_here() + 'bump/' + from + '/' + what + '/';
     var bulink = $('#buurl').find('.taggy').find('a')
     bulink.text(bumpy);
     bulink.attr('href', bumpy);

@@ -70,3 +70,7 @@ function get_own_url() {
   return url;
 }
 
+function base_url_here() {
+  return (window.location.protocol + '//' +
+          window.location.host + '/');
+}
