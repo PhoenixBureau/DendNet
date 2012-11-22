@@ -15,6 +15,16 @@ function reject_action () {
     $('#reject_dialog').reveal();
 }
 
+function reject_it () {
+    var reason = $('#id_reject_reason').val().substring(0, 256);
+    $.post(reject_url, {'reason': reason}, function(data) {
+        if (data.result) {
+            $('iframe').attr('src', '/graph');
+        }
+    });
+    close_reject_dialog();
+}
+
 function size_iframe () {
     var window_height = $(window).height();
     var controls_height = $(".container").height();

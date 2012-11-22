@@ -85,6 +85,13 @@ def engage(me, it, you):
     return jsonify(result=True)
 
 
+@app.route("/reject/<me>/<it>/", methods=['POST'])
+def reject(me, it):
+    reason = request.form['reason'][:255]
+    log.info('reject %s %s %r', me, it, reason)
+    return jsonify(result=True)
+
+
 @app.route('/graph')
 def graph():
     return render_template('graphlog.html')
