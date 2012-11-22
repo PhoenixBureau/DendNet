@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% macro tile(title, id) -%}
+<div class="row"><div class="twelve columns" ><div id="{{ id }}" class="panel">
+<h2>{{ title }}</h2>
+{{ caller() }}
+<br>
+</div></div></div>
+{%- endmacro %}
+{% block content %}
+{% call tile("Rejected!", "rej") %}
+<p>The site has been rejected.
+<p>Close this window or tab anytime.
+{% endcall %}
+{% endblock %}

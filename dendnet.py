@@ -92,6 +92,11 @@ def reject(me, it):
     return jsonify(result=True)
 
 
+@app.route('/rejected/')
+def rejected():
+    return render_template('rejected.html')
+
+
 @app.route('/graph')
 def graph():
     return render_template('graphlog.html')

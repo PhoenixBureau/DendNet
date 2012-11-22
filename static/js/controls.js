@@ -19,7 +19,7 @@ function reject_it () {
     var reason = $('#id_reject_reason').val().substring(0, 256);
     $.post(reject_url, {'reason': reason}, function(data) {
         if (data.result) {
-            $('iframe').attr('src', '/graph');
+            window.location.href = base_url_here() + 'rejected/';
         }
     });
     close_reject_dialog();
