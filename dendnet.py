@@ -2,7 +2,7 @@ import os, logging
 from json import dumps
 from flask import Flask, request, jsonify, render_template
 from tags import tag_for
-from db import retrieve, store, bump, extract_graph
+from db import retrieve, store, bump as record_bump, extract_graph
 from local_caching import store_dec, retrieve_dec
 
 
@@ -89,7 +89,7 @@ def bump(me, it, you):
     if me != you:
         log.info('bump %s %s %s', me, it, you)
         try:
-            bump(me, it, you)
+            record_bump(me, it, you)
         except:
             log.exception('bump to db')
     return render_template('bump.html', **data)
