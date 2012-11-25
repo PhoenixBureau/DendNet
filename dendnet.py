@@ -2,7 +2,7 @@ import os, logging
 from json import dumps
 from flask import Flask, request, jsonify, render_template
 from tags import tag_for
-from openkeyvalue_store import retrieve, store
+from db import retrieve, store, bump, extract_graph
 
 
 def _setup_log():
@@ -45,10 +45,12 @@ def index():
 def reg_ajax():
     url = request.form['urly']
     tag = tag_for(url)
-    if store(**{tag: url}):
-        log.info('register %s %r', tag, url)
-        return jsonify(tag=tag)
-    return 'error storing %r' % ({tag: url},)
+    log.info('register %s %r', tag, url)
+    try:
+        store(tag, url)
+    except:
+        log.exception('register to db')
+    return jsonify(tag=tag)
 
 
 @app.route("/bump/<me>/<it>/")
@@ -81,6 +83,10 @@ def bump(me, it, you):
         )
     if me != you:
         log.info('bump %s %s %s', me, it, you)
+        try:
+            bump(me, it, you)
+        except:
+            log.exception('bump to db')
     return render_template('bump.html', **data)
 
 
@@ -103,9 +109,10 @@ def rejected():
     return render_template('rejected.html')
 
 
-@app.route('/graph')
-def graph():
-    return render_template('graphlog.html')
+@app.route('/graph/<it>/')
+def graph(it):
+    nodes, links = extract_graph(it)
+    return render_template('graphlog.html', nodes=nodes, links=links)
 
 
 if __name__ == '__main__':
