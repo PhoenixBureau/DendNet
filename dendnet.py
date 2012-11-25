@@ -3,6 +3,11 @@ from json import dumps
 from flask import Flask, request, jsonify, render_template
 from tags import tag_for
 from db import retrieve, store, bump, extract_graph
+from local_caching import store_dec, retrieve_dec
+
+
+store = store_dec(store)
+retrieve = retrieve_dec(retrieve)
 
 
 def _setup_log():
