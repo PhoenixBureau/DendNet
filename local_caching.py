@@ -7,8 +7,8 @@ if exists(MEMCACHE_SOCKET):
   CACHE = Client(['unix:' + MEMCACHE_SOCKET], debug=True)
 else:
   CACHE = Client(['127.0.0.1:11213'], debug=True)
-S = CACHE.set
-G = CACHE.get
+S = lambda key, value: CACHE.set(str(key), value)
+G = lambda key: CACHE.get(str(key))
 
 
 def store_dec(s):
