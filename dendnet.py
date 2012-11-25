@@ -1,4 +1,4 @@
-import logging
+import os, logging
 from json import dumps
 from flask import Flask, request, jsonify, render_template
 from tags import tag_for
@@ -27,7 +27,13 @@ def _setup_log():
 log = _setup_log()
 
 
-app = Flask(__name__)
+TEMPLATES = os.environ.get('FLASK_TEMPLATES')
+if TEMPLATES:
+    assert os.path.exists(TEMPLATES), repr(TEMPLATES)
+    app = Flask(__name__, template_folder=TEMPLATES)
+else:
+    app = Flask(__name__)
+    app.debug = True
 
 
 @app.route('/')
