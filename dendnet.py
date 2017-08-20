@@ -116,6 +116,11 @@ def rejected():
     return render_template('rejected.html')
 
 
+@app.route('/demo')
+def demo():
+    return render_template('d3demo1.html')
+
+
 @app.route('/graph/<it>/')
 def graph(it):
     nodes, links = extract_graph(it)
