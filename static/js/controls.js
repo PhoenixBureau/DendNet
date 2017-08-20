@@ -59,10 +59,7 @@ function note_own_tag(tag) {
 
 function get_own_tag() {
   var tag = $.cookie("own_tag");
-  if (_.isNull(tag)) {
-    return '';
-  }
-  return tag;
+  return _.isNull(tag) ? '' : tag;
 }
 
 function note_own_url(url) {
@@ -74,10 +71,7 @@ function note_own_url(url) {
 
 function get_own_url() {
   var url = $.cookie("own_url");
-  if (_.isNull(url)) {
-    return '';
-  }
-  return url;
+  return _.isNull(url) ? '' : url;
 }
 
 function base_url_here() {
