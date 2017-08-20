@@ -2,12 +2,7 @@ import os, logging
 from json import dumps
 from flask import Flask, request, jsonify, render_template
 from tags import tag_for
-from db import retrieve, store, bump as record_bump, extract_graph
-from local_caching import store_dec, retrieve_dec
-
-
-store = store_dec(store)
-retrieve = retrieve_dec(retrieve)
+from fakedb import retrieve, store, bump as record_bump, extract_graph, load, save
 
 
 def _setup_log():
@@ -20,6 +15,11 @@ def _setup_log():
         '%(asctime)s %(name)s %(levelname)s %(message)s'
         ))
     log.addHandler(sh)
+
+    # Dirty hack.
+    fdblog = logging.getLogger('fakedb')
+    fdblog.setLevel(logging.DEBUG)
+    fdblog.addHandler(sh)
 
     fh = logging.FileHandler('dendnet.log')
     fh.setLevel(logging.INFO)
@@ -60,6 +60,7 @@ def reg_ajax():
 
 @app.route("/bump/<me>/<it>/")
 def anonbumphook(me, it):
+    log.debug('anonbumphook %s %s', me, it)
     return render_template('anonbumphook.html')
 
 
@@ -71,6 +72,7 @@ def anonbump(me, it):
         me=me,
         it=it,
         )
+    log.debug('anonbump %s %s', me, it)
     return render_template('anonbump.html', **data)
 
 
@@ -121,6 +123,7 @@ def graph(it):
 
 
 if __name__ == '__main__':
+    load()
     app.debug = True
     app.run(host='0.0.0.0')
 
