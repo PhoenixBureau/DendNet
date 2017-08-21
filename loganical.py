@@ -1,10 +1,8 @@
 from datetime import datetime
 from collections import defaultdict
 import json
-import requests
 
 
-LOG_URL = 'http://denebii:5000/static/dendnet.log'
 DATE_FORMAT = '%Y-%m-%d %H:%M:%S,%f'
 
 
@@ -64,12 +62,11 @@ class JSONLogan(JSONMixin, Logan):
 
 
 if __name__ == '__main__':
+  import fileinput
   from pprint import pprint
 
-
-  data = requests.get(LOG_URL).text.splitlines(False)
   el = JSONLogan()
-  for line in data:
+  for line in fileinput.input():
     el.process(line)
   el._post()
 
