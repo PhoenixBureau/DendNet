@@ -11,4 +11,7 @@ together.
 I am switching from Django to Flask as a matter of personal preference
 and I'll be using this project to try out the framework I'll be teaching.
 
-Testing local commit hook to update local staging server...
+Engage should open in a new tab.
+
+Contact mgmt?
+

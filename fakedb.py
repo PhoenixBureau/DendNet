@@ -44,7 +44,7 @@ def save(fn='new.data.db'):
         with open(fn, 'w') as f:
             pickle.dump(db, f)
     except:
-        log.exception('load %r failed', fn)
+        log.exception('save %r failed', fn)
 
 
 if __name__ == '__main__':
